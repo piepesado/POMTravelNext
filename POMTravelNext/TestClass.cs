@@ -20,8 +20,18 @@ namespace POMTravelNext
         [Test]
         public void BookFlight()
         {
+            string user = "dnan@travelleaders.com";
+            string pass = "P@ss123";
+            string cid = "20033";
             LoginPage log = new LoginPage(driver);
-            log.LogOn(userName, passWord, cidNumber);
+            log.LogOn(user, pass, cid);
+            //Assert.True()
+        }
+
+        [TearDown]
+        public void Quit()
+        {
+            driver.Quit();
         }
     }
 }
