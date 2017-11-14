@@ -33,6 +33,8 @@ namespace POMTravelNext.PageObjects
         [FindsBy(How = How.Id, Using = "ucPWP_ctl07_2524_ctl00_2597_lnkBtnSignIn")]
         private IWebElement signIn;
 
+        // Add forgot password link
+
         public void GoToPage()
         {
             driver.Navigate().GoToUrl("http://managedemo.travelnxt.com/Login");

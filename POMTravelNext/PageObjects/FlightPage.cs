@@ -11,6 +11,14 @@ namespace POMTravelNext.PageObjects
 {
     class FlightPage
     {
+        IWebDriver driver;
+
+        public FlightPage(IWebDriver driver)
+        {
+            this.driver = driver;
+            PageFactory.InitElements(driver, this);
+        }
+
         //From and To fields
         [FindsBy(How = How.Id, Using = "ucPWP_ctl14_12066_txtFlightDepartLoc")]
         private IWebElement fromField;
@@ -43,8 +51,6 @@ namespace POMTravelNext.PageObjects
             leaveDatePicker.SendKeys(leaveDate);
             returnDatePicker.SendKeys(returnDate);
             searchButton.Click();
-
         }
-
     }
 }

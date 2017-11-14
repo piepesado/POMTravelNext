@@ -102,9 +102,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PageObjects\BackOfficePage.cs" />
+    <Compile Include="PageObjects\HoteltPage.cs" />
     <Compile Include="PageObjects\FlightPage.cs" />
     <Compile Include="PageObjects\LoginPage.cs" />
-    <Compile Include="TestClass.cs" />
+    <Compile Include="TestCases\BookFlightMainPath.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -117,9 +118,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TestCases\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
