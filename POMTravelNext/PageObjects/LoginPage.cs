@@ -6,7 +6,6 @@ using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
-
 namespace POMTravelNext.PageObjects
 {
     class LoginPage
@@ -20,7 +19,7 @@ namespace POMTravelNext.PageObjects
         }
 
         [FindsBy(How = How.Id, Using = "ucPWP_ctl07_2524_ctl00_2597_txtUserName")]
-        private IWebElement userName;
+        private IWebElement UserName { get; set; }// Why use this getters and setters?
 
         [FindsBy(How = How.Id, Using = "ucPWP_ctl07_2524_ctl00_2597_txtPassword")]
         private IWebElement passWord;
@@ -39,16 +38,14 @@ namespace POMTravelNext.PageObjects
             driver.Navigate().GoToUrl("http://managedemo.travelnxt.com/Login");
         }
 
-        public void LogOn(string userName, string passWord, string cidNumber)
+        public void LogOn(string user, string pass, string cid)
         {
-            this.userName.SendKeys("dnan@travelleaders.com");
-            this.passWord.SendKeys("P@ss123");
-            this.cidNumber.SendKeys("20033");
+            UserName.SendKeys(user);
+            passWord.SendKeys(pass);
+            cidNumber.SendKeys(cid);
             captchaField.Click();
-
             Thread.Sleep(10000);
+            signIn.Click();            
         }
-
-
     }
 }

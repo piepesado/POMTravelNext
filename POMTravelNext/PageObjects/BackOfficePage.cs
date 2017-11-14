@@ -10,13 +10,21 @@ namespace POMTravelNext.PageObjects
 {
     class BackOfficePage
     {
+        IWebDriver driver;
+
+        public BackOfficePage(IWebDriver driver)
+        {
+            this.driver = driver;
+            PageFactory.InitElements(driver, this);
+        }
+
         //Do I have to copy driver and element inicialization?
         [FindsBy(How = How.Id, Using = "ucPWP_ctl07_2517_lnkFO")]
         private IWebElement frontOfficeButton;
 
         public void ClickFrontOffice()
         {
-            this.frontOfficeButton.Click();
+            frontOfficeButton.Click();
         }
     }
 

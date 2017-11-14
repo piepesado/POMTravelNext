@@ -10,6 +10,7 @@ namespace POMTravelNext
     public class TestClass
     {
         IWebDriver driver;
+
         [SetUp]
         public void SetUp()
         {
@@ -20,12 +21,21 @@ namespace POMTravelNext
         [Test]
         public void BookFlight()
         {
+            LoginPage goTo = new LoginPage(driver);
+            goTo.GoToPage();
+
             string user = "dnan@travelleaders.com";
             string pass = "P@ss123";
             string cid = "20033";
             LoginPage log = new LoginPage(driver);
             log.LogOn(user, pass, cid);
-            //Assert.True()
+
+            Assert.True(driver.Title.Contains("Login"));
+            BackOfficePage backOff = new BackOfficePage(driver);
+
+            backOff.ClickFrontOffice();
+
+
         }
 
         [TearDown]

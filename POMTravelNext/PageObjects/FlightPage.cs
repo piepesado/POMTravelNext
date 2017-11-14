@@ -9,7 +9,7 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace POMTravelNext.PageObjects
 {
-    class FlightPage 
+    class FlightPage
     {
         //From and To fields
         [FindsBy(How = How.Id, Using = "ucPWP_ctl14_12066_txtFlightDepartLoc")]
@@ -34,14 +34,14 @@ namespace POMTravelNext.PageObjects
         [FindsBy(How = How.Id, Using = "ucPWP_ctl14_12066_btnSearch")]
         private IWebElement searchButton;
 
-        public void SearchFlight(string fromField, string toField, string leaveDatePicker, string returnDatePicker)
+        public void SearchFlight(string from, string to, string leaveDate, string returnDate)
         {
-            this.fromField.SendKeys("Montevideo");
-            this.fromField.SendKeys(Keys.Tab);
-            this.toField.SendKeys("Arlington");
-            this.toField.SendKeys(Keys.Tab);
-            this.leaveDatePicker.SendKeys("03/03/2018");
-            this.returnDatePicker.SendKeys("03/20/2018");
+            fromField.SendKeys(from);
+            fromField.SendKeys(Keys.Tab);
+            toField.SendKeys(to);
+            toField.SendKeys(Keys.Tab);
+            leaveDatePicker.SendKeys(leaveDate);
+            returnDatePicker.SendKeys(returnDate);
             searchButton.Click();
 
         }
