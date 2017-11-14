@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using NUnit.Framework;
 
 namespace POMTravelNext.PageObjects
 {
@@ -38,6 +39,11 @@ namespace POMTravelNext.PageObjects
         public void GoToPage()
         {
             driver.Navigate().GoToUrl("http://managedemo.travelnxt.com/Login");
+        }
+
+        public bool IsPageOpened()// Shouldnt be an Assert be implemented here?
+        {// This should be added to a Helper class to be common for all page objects
+            return driver.Title.Equals("Login");
         }
 
         public void LogOn(string user, string pass, string cid)

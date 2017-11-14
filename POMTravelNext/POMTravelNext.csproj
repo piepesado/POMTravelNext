@@ -105,6 +105,9 @@
     <Compile Include="PageObjects\HoteltPage.cs" />
     <Compile Include="PageObjects\FlightPage.cs" />
     <Compile Include="PageObjects\LoginPage.cs" />
+    <Compile Include="PageObjects\SearchingPage.cs" />
+    <Compile Include="PageObjects\ResultsPage.cs" />
+    <Compile Include="PageObjects\MultipleLocationPage.cs" />
     <Compile Include="TestCases\BookFlightMainPath.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

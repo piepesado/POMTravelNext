@@ -26,16 +26,16 @@ namespace POMTravelNext
             string user = "dnan@travelleaders.com";
             string pass = "P@ss123";
             string cid = "20033";
-            string fromCity = "Montevideo";
-            string toCity = "Dublin";
+            string fromCity = "New York";// If there are multiple values for a given city multiple location page is displayed
+            string toCity = "Paris";
             string leave = "03/03/2018";
             string returnD = "03/04/2018";
 
             LoginPage goTo = new LoginPage(driver);
-            goTo.GoToPage();
-            Assert.True(driver.Title.Equals("Login"));
+            goTo.GoToPage();            
             
             LoginPage log = new LoginPage(driver);
+            Assert.True(log.IsPageOpened());//IsPageOpened is implemented on Login Page, boolean function
             log.LogOn(user, pass, cid);
             
             BackOfficePage backOff = new BackOfficePage(driver);
@@ -47,9 +47,16 @@ namespace POMTravelNext
 
             Assert.True(driver.Title.Contains("Mystique"));
             FlightPage flight = new FlightPage(driver);
-            flight.SearchFlight(fromCity, toCity, leave, returnD);
-            Thread.Sleep(5000);
+            flight.SearchFlight(fromCity, toCity, leave, returnD);            
 
+            MultipleLocationPage multi = new MultipleLocationPage(driver);
+            multi.ClickContinue();
+
+            SearchingPage search = new SearchingPage(driver);
+            search.WaitForBar();
+
+            ResultsPage results = new ResultsPage(driver);
+            results.SortByList();
         }
 
         [TearDown]
