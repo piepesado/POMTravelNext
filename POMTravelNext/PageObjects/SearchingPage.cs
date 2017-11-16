@@ -22,29 +22,14 @@ namespace POMTravelNext.PageObjects
         }
 
         [FindsBy(How = How.Id, Using = ("dvPreloader"))]
-        private IWebElement progressBar;
+        private IWebElement progressBar;      
 
         
 
-        public static Boolean WaitForElementVisible(IWebDriver driver, IWebElement element)
-        {//This should be implemented on a Helper class
-            try
-            {
-                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
-                wait.Until(d => (bool)(element as IWebElement).Displayed);
-                return true;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
-            }
-        }
-
         public void WaitForBar()
-        {
-            // WaitForElementVisible(driver, priceFilter);
+        {        
             
-            WaitForElementVisible(driver, progressBar);
+            Helper.WaitForElementVisible(driver, progressBar);
         }
     }
 }

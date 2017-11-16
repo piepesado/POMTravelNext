@@ -35,11 +35,15 @@ namespace POMTravelNext.PageObjects
             listView.Click();
         }
 
+        public void HidePriceFilter()
+        {
+            Helper.WaitForElementVisible(driver, priceFilter);
+            Thread.Sleep(3000);
+            priceFilter.Click();
+        }
 
         public void SelectFlight()
-        {
-            // WaitForElementVisible(driver, priceFilter);
-            
+        {                    
             addToCart.Click();
         }
     }

@@ -42,8 +42,7 @@ namespace POMTravelNext
             backOff.ClickFrontOffice();
 
             HotelPage hotel = new HotelPage(driver);
-            hotel.ClickFlightLink();
-            // driver.Manage().Timeouts().PageLoad()
+            hotel.ClickFlightLink();            
 
             Assert.True(driver.Title.Contains("Mystique"));
             FlightPage flight = new FlightPage(driver);
@@ -53,10 +52,11 @@ namespace POMTravelNext
             multi.ClickContinue();
 
             SearchingPage search = new SearchingPage(driver);
-            search.WaitForBar();
+            // search.WaitForBar();
 
             ResultsPage results = new ResultsPage(driver);
-            results.SortByList();
+            // results.SortByList();            
+            results.HidePriceFilter();
         }
 
         [TearDown]

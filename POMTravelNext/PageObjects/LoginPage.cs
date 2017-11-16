@@ -20,7 +20,7 @@ namespace POMTravelNext.PageObjects
         }
 
         [FindsBy(How = How.Id, Using = "ucPWP_ctl07_2524_ctl00_2597_txtUserName")]
-        private IWebElement UserName { get; set; }// Why use this getters and setters?
+        private IWebElement UserName { get; set; }// Why should this getters and setters be used?
 
         [FindsBy(How = How.Id, Using = "ucPWP_ctl07_2524_ctl00_2597_txtPassword")]
         private IWebElement passWord;
