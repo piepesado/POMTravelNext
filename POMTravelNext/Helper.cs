@@ -30,7 +30,7 @@ namespace POMTravelNext
             try
             {
                 var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
-                wait.Until(d => (bool)(element as IWebElement).Displayed);
+                wait.Until(d => (element as IWebElement).Displayed);
                 return true;
             }
             catch (NoSuchElementException)

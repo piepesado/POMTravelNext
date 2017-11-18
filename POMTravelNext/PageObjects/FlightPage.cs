@@ -62,8 +62,7 @@ namespace POMTravelNext.PageObjects
             toField.SendKeys(to);
             toField.SendKeys(Keys.Tab);
             leaveDatePicker.SendKeys(leaveDate);
-            returnDatePicker.SendKeys(returnDate);
-            
+            returnDatePicker.SendKeys(returnDate);            
             searchButton.Click();
         }
     }

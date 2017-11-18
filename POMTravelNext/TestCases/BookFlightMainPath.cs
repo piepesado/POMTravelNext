@@ -12,6 +12,8 @@ namespace POMTravelNext
     {
         IWebDriver driver;
 
+        public IWebElement tripCartQty { get; private set; }
+
         [SetUp]
         public void SetUp()
         {
@@ -32,11 +34,11 @@ namespace POMTravelNext
             string returnD = "03/04/2018";
 
             LoginPage goTo = new LoginPage(driver);
-            goTo.GoToPage();            
+            goTo.GoToPage();         
+
+            Assert.True(goTo.IsPageOpened());
             
-            LoginPage log = new LoginPage(driver);
-            Assert.True(log.IsPageOpened());//IsPageOpened is implemented on Login Page, boolean function
-            log.LogOn(user, pass, cid);
+            goTo.LogOn(user, pass, cid);
             
             BackOfficePage backOff = new BackOfficePage(driver);
             backOff.ClickFrontOffice();
@@ -55,8 +57,14 @@ namespace POMTravelNext
             // search.WaitForBar();
 
             ResultsPage results = new ResultsPage(driver);
-            // results.SortByList();            
+            // results.SortByList();  
+            
             results.HidePriceFilter();
+            Thread.Sleep(2000);
+            // results.ClickSortButtons();
+            results.MySearches();
+            // What effective parameter should I use on this function invocation?            
+           // Assert.IsTrue(results.CheckTripCartQty(tripCartQty));
         }
 
         [TearDown]

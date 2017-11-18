@@ -21,11 +21,15 @@ namespace POMTravelNext.PageObjects
 
         //Hotel locators
         [FindsBy(How = How.Id, Using = "liflightTab")]
-        private IWebElement FlightLink;
+        private IWebElement flightLink;
+        
+        
+        
 
         public void ClickFlightLink()
         {
-            FlightLink.Click();
+            // Helper.WaitForElementVisible(driver, flightLink);
+            flightLink.Click();
 
         }
 
