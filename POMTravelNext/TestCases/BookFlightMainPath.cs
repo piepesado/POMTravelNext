@@ -32,9 +32,11 @@ namespace POMTravelNext
             string toCity = "Paris";
             string leave = "03/03/2018";
             string returnD = "03/04/2018";
+            string leaveH = "3:00 AM";
+            string returnH = "12:00 AM";
 
             LoginPage goTo = new LoginPage(driver);
-            goTo.GoToPage();         
+            goTo.GoToPage();
 
             Assert.True(goTo.IsPageOpened());
             
@@ -44,11 +46,16 @@ namespace POMTravelNext
             backOff.ClickFrontOffice();
 
             HotelPage hotel = new HotelPage(driver);
+            Thread.Sleep(2000);
             hotel.ClickFlightLink();            
 
             Assert.True(driver.Title.Contains("Mystique"));
-            FlightPage flight = new FlightPage(driver);
-            flight.SearchFlight(fromCity, toCity, leave, returnD);            
+            FlightPage flight = new FlightPage(driver);            
+            flight.ClickRadioButtons();
+            // Assert.IsTrue(driver.Title.Equals("BugFixer :: Home"));
+            flight.SearchFlight(fromCity, toCity, leave, returnD, leaveH, returnH);            
+
+            Thread.Sleep(2000);
 
             MultipleLocationPage multi = new MultipleLocationPage(driver);
             multi.ClickContinue();
@@ -70,6 +77,7 @@ namespace POMTravelNext
         [TearDown]
         public void Quit()
         {
+            driver.Close();
             driver.Quit();
         }
     }

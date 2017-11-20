@@ -20,7 +20,7 @@ namespace POMTravelNext.PageObjects
         }
 
         //Hotel locators
-        [FindsBy(How = How.Id, Using = "liflightTab")]
+        [FindsBy(How = How.LinkText, Using = "Flight")]
         private IWebElement flightLink;
         
         

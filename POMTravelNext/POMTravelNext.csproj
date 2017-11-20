@@ -103,7 +103,7 @@
   <ItemGroup>
     <Compile Include="Helper.cs" />
     <Compile Include="PageObjects\BackOfficePage.cs" />
-    <Compile Include="PageObjects\HoteltPage.cs" />
+    <Compile Include="PageObjects\HotelPage.cs" />
     <Compile Include="PageObjects\FlightPage.cs" />
     <Compile Include="PageObjects\LoginPage.cs" />
     <Compile Include="PageObjects\SearchingPage.cs" />

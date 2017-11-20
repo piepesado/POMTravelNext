@@ -27,7 +27,7 @@ namespace POMTravelNext.PageObjects
         
 
         public void WaitForBar()
-        {        
+        {    
             
             Helper.WaitForElementVisible(driver, progressBar);
         }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Interactions;
 using NUnit.Framework.Internal;
 
 namespace POMTravelNext.PageObjects
@@ -33,36 +34,58 @@ namespace POMTravelNext.PageObjects
         [FindsBy(How = How.Id, Using = "ucPWP_ctl14_12066_txtFlightArriveDate")]
         private IWebElement returnDatePicker;
 
-        //Leave and Return dropdowns    
-        //[FindsBy(How = How.ClassName, Using = "ucPWP_ctl14_12066_ddlFlightDepartTime")]
-        //public IList<IWebElement> leaveTime { get; set; }
+        //Dropdowns
+        [FindsBy(How = How.Id, Using = "ucPWP_ctl14_12066_ddlFlightDepartTime")]
+        private IWebElement leaveHourDrop;
 
+        [FindsBy(How = How.Id, Using = "ucPWP_ctl14_12066_ddlFlightArriveTime")]
+        private IWebElement returnHourDrop;
 
-        //public void LeaveTime(int index)
-        //{
-        //    var leaveT = driver.FindElement(By.Id("ucPWP_ctl14_12066_ddlFlightDepartTime"));
-        //    var SelectElement = new SelectElement(leaveT);             
-        //}
+        // Checkbox
+        [FindsBy(How = How.Name, Using = "ucPWP$ctl14$12066$cbxNearbyAirports")]
+        private IWebElement nearAirChk;
 
+        // Radio buttons
+        [FindsBy(How = How.Id, Using = "ucPWP_ctl14_12066_radRoundTrip")]
+        private IWebElement roundTripRadio;
 
+        [FindsBy(How = How.Id, Using = "ucPWP_ctl14_12066_radOneWayTrip")]
+        private IWebElement oneWayRadio;
+
+        [FindsBy(How = How.Id, Using = "ucPWP_ctl14_12066_radMultipleDestns")]
+        private IWebElement multiCityTripRadio;      
 
         //Search button
         [FindsBy(How = How.Id, Using = "ucPWP_ctl14_12066_btnSearch")]
-        private IWebElement searchButton;
+        private IWebElement searchButton;     
 
-        //public void SelectLeaveTimeValue(String leaveTimeValue)
-        //{
-        //    leaveTime        
-        //}
+        // Actions
+        public void SelectTime()
+        {
+            Actions selectHours = new Actions(driver);            
+            selectHours.MoveToElement(leaveHourDrop);
+            selectHours.Click();
+            selectHours.Perform();
+        }
 
-        public void SearchFlight(string from, string to, string leaveDate, string returnDate)
+        public void ClickRadioButtons()
+        {
+            oneWayRadio.Click();
+            multiCityTripRadio.Click();
+            roundTripRadio.Click();
+        }
+        
+        public void SearchFlight(string from, string to, string leaveDate, string returnDate, string leaveH, string returnH)
         {
             fromField.SendKeys(from);
             fromField.SendKeys(Keys.Tab);
             toField.SendKeys(to);
             toField.SendKeys(Keys.Tab);
             leaveDatePicker.SendKeys(leaveDate);
-            returnDatePicker.SendKeys(returnDate);            
+            returnDatePicker.SendKeys(returnDate);
+            new SelectElement(leaveHourDrop).SelectByText(leaveH);
+            new SelectElement(returnHourDrop).SelectByText(returnH);
+            nearAirChk.Click();
             searchButton.Click();
         }
     }
