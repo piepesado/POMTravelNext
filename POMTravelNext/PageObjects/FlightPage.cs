@@ -85,7 +85,8 @@ namespace POMTravelNext.PageObjects
             returnDatePicker.SendKeys(returnDate);
             new SelectElement(leaveHourDrop).SelectByText(leaveH);
             new SelectElement(returnHourDrop).SelectByText(returnH);
-            nearAirChk.Click();
+            if(!nearAirChk.Selected)
+                nearAirChk.Click();
             searchButton.Click();
         }
     }

@@ -10,9 +10,7 @@ namespace POMTravelNext
     [TestFixture]
     public class BookFlightMainPath
     {
-        IWebDriver driver;
-
-        public IWebElement tripCartQty { get; private set; }
+        IWebDriver driver;        
 
         [SetUp]
         public void SetUp()
@@ -30,10 +28,10 @@ namespace POMTravelNext
             string cid = "20033";
             string fromCity = "New York";// If there are multiple values for a given city multiple location page is displayed
             string toCity = "Paris";
-            string leave = "03/03/2018";
-            string returnD = "03/04/2018";
-            string leaveH = "3:00 AM";
-            string returnH = "12:00 AM";
+            string leave = "06/01/2018";
+            string returnD = "07/04/2018";
+            string leaveH = "11:00 AM";
+            string returnH = "10:00 PM";
 
             LoginPage goTo = new LoginPage(driver);
             goTo.GoToPage();
@@ -59,10 +57,7 @@ namespace POMTravelNext
 
             MultipleLocationPage multi = new MultipleLocationPage(driver);
             multi.ClickContinue();
-
-            SearchingPage search = new SearchingPage(driver);
-            // search.WaitForBar();
-
+            
             ResultsPage results = new ResultsPage(driver);
             // results.SortByList();  
             
@@ -70,8 +65,10 @@ namespace POMTravelNext
             Thread.Sleep(2000);
             // results.ClickSortButtons();
             results.MySearches();
+            //need to scroll down
+            results.AddFlightToCart();
             // What effective parameter should I use on this function invocation?            
-           // Assert.IsTrue(results.CheckTripCartQty(tripCartQty));
+           Assert.IsTrue(results.CheckTripCartQty());
         }
 
         [TearDown]

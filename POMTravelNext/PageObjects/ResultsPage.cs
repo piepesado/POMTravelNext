@@ -9,6 +9,7 @@ using OpenQA.Selenium.Support.PageObjects;
 using System.Threading;
 using OpenQA.Selenium.Support.UI;
 using NUnit.Framework;
+using OpenQA.Selenium.Interactions;
 
 namespace POMTravelNext.PageObjects
 {
@@ -89,9 +90,14 @@ namespace POMTravelNext.PageObjects
             priceFilter.Click();
         }
 
-        public void SelectFlight()
-        {                    
-            addToCart.Click();
+        public void AddFlightToCart()
+        {
+            // Scroll until the element is visible
+            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", addToCart);            
+            Actions addFlight = new Actions(driver);
+            addFlight.MoveToElement(addToCart);
+            addFlight.Click(addToCart);
+            addFlight.Perform();            
         }
 
         public void ClickSortButtons()
@@ -112,16 +118,15 @@ namespace POMTravelNext.PageObjects
         public void CheckCart()
         {
             // Assert.IsTrue(tripCart.Text("Trip Cart");
-        }
-    
-        /*
-        public Boolean CheckTripCartQty(IWebElement tripCartQty)
+        }    
+        
+        public Boolean CheckTripCartQty()
         {
             Boolean areEqual = false;              
-            if (tripCartQty.ToString*() == "1")
+            if (tripCartQty.Text == "1")
                 areEqual = true;
             return areEqual; 
         }
-        */
+        
     }
 }
