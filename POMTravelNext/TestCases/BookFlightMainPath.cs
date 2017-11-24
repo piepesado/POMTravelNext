@@ -64,11 +64,12 @@ namespace POMTravelNext
             results.HidePriceFilter();
             Thread.Sleep(2000);
             // results.ClickSortButtons();
-            results.MySearches();
-            //need to scroll down
+            results.MySearches();           
             results.AddFlightToCart();
+            Thread.Sleep(3000);
             // What effective parameter should I use on this function invocation?            
            Assert.IsTrue(results.CheckTripCartQty());
+           Assert.IsTrue(results.PageSource());
         }
 
         [TearDown]

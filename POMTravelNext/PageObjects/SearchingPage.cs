@@ -22,13 +22,10 @@ namespace POMTravelNext.PageObjects
         }
 
         [FindsBy(How = How.Id, Using = ("dvPreloader"))]
-        private IWebElement progressBar;  
-
-        
+        private IWebElement progressBar;
 
         public void WaitForBar()
-        {    
-            
+        {              
             Helper.WaitForElementVisible(driver, progressBar);
         }
     }

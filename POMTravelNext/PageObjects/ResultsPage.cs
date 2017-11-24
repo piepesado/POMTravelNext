@@ -13,7 +13,7 @@ using OpenQA.Selenium.Interactions;
 
 namespace POMTravelNext.PageObjects
 {
-    class ResultsPage
+    class ResultsPage 
     {
         IWebDriver driver;
 
@@ -23,7 +23,7 @@ namespace POMTravelNext.PageObjects
             PageFactory.InitElements(driver, this);
         }
 
-        [FindsBy(How = How.Id, Using = ("btn_AddToCart_0"))]
+        [FindsBy(How = How.CssSelector, Using = ("#btn_AddToCart_0"))]
         private IWebElement addToCart;
 
         // Sliders links
@@ -93,11 +93,12 @@ namespace POMTravelNext.PageObjects
         public void AddFlightToCart()
         {
             // Scroll until the element is visible
-            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", addToCart);            
-            Actions addFlight = new Actions(driver);
-            addFlight.MoveToElement(addToCart);
-            addFlight.Click(addToCart);
-            addFlight.Perform();            
+            ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", addToCart);
+            Helper.WaitForElementVisible(driver, addToCart);
+            Actions addFlight = new Actions(driver);            
+            addFlight.Click(addToCart)            
+            .Build()
+            .Perform();
         }
 
         public void ClickSortButtons()
@@ -126,6 +127,14 @@ namespace POMTravelNext.PageObjects
             if (tripCartQty.Text == "1")
                 areEqual = true;
             return areEqual; 
+        }
+
+        public Boolean PageSource()
+        {
+            Boolean contains = false;
+            if (driver.PageSource.Contains("btn_AddToCart_0"))
+                contains = true;
+            return contains;            
         }
         
     }
