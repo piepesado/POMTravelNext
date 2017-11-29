@@ -26,6 +26,12 @@ namespace POMTravelNext.PageObjects
         [FindsBy(How = How.CssSelector, Using = ("#btn_AddToCart_0"))]
         private IWebElement addToCart;
 
+        [FindsBy(How = How.Id, Using = ("btnCartContinue"))]
+        private IWebElement continueShopping;
+
+        [FindsBy(How = How.Id, Using = ("btnCheckOutCart"))]
+        private IWebElement checkOutButton;
+
         // Sliders links
         [FindsBy(How = How.Id, Using = ("divSectionPrice"))]
         private IWebElement priceFilter;
@@ -137,6 +143,22 @@ namespace POMTravelNext.PageObjects
             if (driver.PageSource.Contains("btn_AddToCart_0"))
                 contains = true;
             return contains;            
+        }
+
+        public void ClickCheckOut()
+        {
+            Helper.WaitForElementVisible(driver, continueShopping);
+            checkOutButton.Click();
+        }
+
+        public void ResultsPageActions()
+        {
+            SortByList();
+            HidePriceFilter();
+            ClickSortButtons();
+            MySearches();
+            AddFlightToCart();
+            ClickCheckOut();
         }
         
     }

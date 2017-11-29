@@ -22,16 +22,23 @@ namespace POMTravelNext
         [Test]
         public void BookFlight()
         {
-            //Parameters
+            //Parameters Log In
             string user = "dnan@travelleaders.com";
             string pass = "P@ss123";
             string cid = "20033";
-            string fromCity = "New York";// If there are multiple values for a given city multiple location page is displayed
+            //Parameters Search Flight
+            string fromCity = "Madrid";// If there are multiple values for a given city multiple location page is displayed
             string toCity = "Paris";
-            string leave = "06/01/2018";
-            string returnD = "07/04/2018";
+            string leave = "02/13/2018";
+            string returnD = "02/28/2018";
             string leaveH = "11:00 AM";
             string returnH = "10:00 PM";
+            //Parameters Guest User Log In
+            string fName = "Malcom";
+            string lName = "Young";
+            string email = "malcom@acdc.com";
+            string areaP = "312";
+            string numberP = "6905367";
 
             LoginPage goTo = new LoginPage(driver);
             goTo.GoToPage();
@@ -59,6 +66,7 @@ namespace POMTravelNext
             multi.ClickContinue();
             
             ResultsPage results = new ResultsPage(driver);
+            /*
             results.SortByList();  
             
             results.HidePriceFilter();
@@ -66,9 +74,19 @@ namespace POMTravelNext
             results.ClickSortButtons();
             results.MySearches();           
             results.AddFlightToCart();
+            results.ClickCheckOut();
             Thread.Sleep(4000);                   
-           Assert.IsTrue(results.CheckTripCartQty());
-           Assert.IsTrue(results.PageSource());
+            Assert.IsTrue(results.CheckTripCartQty());
+            //Assert.IsTrue(results.PageSource());
+            */
+            results.ResultsPageActions();
+
+            ItineraryPage itinerary = new ItineraryPage(driver);
+            itinerary.ClickCheckout();
+
+            UserPage userLog = new UserPage(driver);
+            userLog.LogAsGuest(fName, lName, email, email, areaP, numberP);
+            userLog.SubmitGuest();
         }
 
         [TearDown]
