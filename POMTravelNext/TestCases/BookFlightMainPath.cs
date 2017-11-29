@@ -66,8 +66,7 @@ namespace POMTravelNext
             results.ClickSortButtons();
             results.MySearches();           
             results.AddFlightToCart();
-            Thread.Sleep(4000);
-            // What effective parameter should I use on this function invocation?            
+            Thread.Sleep(4000);                   
            Assert.IsTrue(results.CheckTripCartQty());
            Assert.IsTrue(results.PageSource());
         }
