@@ -1,5 +1,4 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using POMTravelNext.PageObjects;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -42,14 +41,29 @@ namespace POMTravelNext
             //Parameters Traveler Details
             string title = "Dr.";
             string middle = "Jay";
-            string gender = "Male";
+            //string gender = "Male";
             /*
             Dont know why its not able to find birthday dropdowns when selection is passed by index or strings.
             int month = 3;
             int day = 4;
             int year = 10;
             */
+
             //Parameters Credit Card
+            string cardNumber = "4111111111111111";
+            string cvvNumber = "123";
+            string nameCard = "Rohan Pandit";
+            //string expMonth = "Apr";
+            //string expYear = "2018";
+
+            //Parameters Billing Address
+            string addressLine1 = "Legacy Drive Suite 53600";
+            string city = "Piano";
+            //string country = "United States";
+            string zipCode = "75034";
+            //string state = "Texas";
+            string areaBilling = "9090";
+            string phoneBilling = "89890898875";
 
             LoginPage goTo = new LoginPage(driver);
             goTo.GoToPage();
@@ -72,8 +86,8 @@ namespace POMTravelNext
             ResultsPage results = new ResultsPage(driver);            
             results.ResultsPageActions();
             ItineraryPage itinerary = new ItineraryPage(driver);
-            itinerary.ClickCheckout();
-            //Assert.True(driver.Title.Contains("Checkout"));
+            Assert.True(driver.Title.Contains("Trip folder"));
+            itinerary.ClickCheckout();            
             
             //UserPage userLog = new UserPage(driver);
             Assert.True(driver.Title.Contains("Checkout"));
@@ -81,8 +95,11 @@ namespace POMTravelNext
             //userLog.SubmitGuest();
 
             CheckOutPage checkOut = new CheckOutPage(driver);
-            checkOut.CompleteTravelerDetails(title, fName, middle, lName, email, gender);
-            Thread.Sleep(2000);
+            checkOut.CompleteTravelerDetails(title, fName, middle, lName, email);            
+            checkOut.EnterCreditCard(cardNumber, cvvNumber, nameCard);            
+            checkOut.EnterBillingAddress(addressLine1, city, zipCode, areaBilling, phoneBilling);
+            checkOut.Purchase();
+            Thread.Sleep(4000);
         }
 
         [TearDown]

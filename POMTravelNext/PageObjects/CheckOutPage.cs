@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 
@@ -102,7 +97,7 @@ namespace POMTravelNext.PageObjects
 
         //Actions
 
-        public void CompleteTravelerDetails(string title, string name, string middle, string last, string email, string gender)
+        public void CompleteTravelerDetails(string title, string name, string middle, string last, string email)
         {
             //Should I use int for numbers and then convert them to string?
             new SelectElement(paxTitle).SelectByText(title);
@@ -110,53 +105,42 @@ namespace POMTravelNext.PageObjects
             paxMiddle.SendKeys(middle);
             paxLast.SendKeys(last);
             paxEmail.SendKeys(email);
-            new SelectElement(paxGender).SelectByText(gender);
+            new SelectElement(paxGender).SelectByText("Male");
             new SelectElement(paxMonth).SelectByIndex(3);
             new SelectElement(paxMonth).SelectByIndex(4);
+            //It does not enter month, its not being validated, since birth date is mandatory
             new SelectElement(paxYear).SelectByIndex(10);
         }
 
-        public void EnterCreditCard(string number, string cvv, string name, string month, string year)
+        public void EnterCreditCard(string number, string cvv, string name)
         {
             cardNumber.SendKeys(number);
             cvvNumber.SendKeys(cvv);
             cardName.SendKeys(name);
-            new SelectElement(paxMonth);
-            new SelectElement(paxYear);
+            new SelectElement(paxMonth).SelectByIndex(4);
+            new SelectElement(paxYear).SelectByIndex(2);
             ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", addressLine);
         }
 
-        public void EnterBillingAddress(string address1, string address2, string city, string country, string zip, string state, string area, string phone)
+        public void EnterBillingAddress(string address1, string city, string zip, string area, string phone)
         {
-            addressLine.SendKeys(address1);
-            addressLine2.SendKeys(address2);
+            addressLine.SendKeys(address1);            
             cityCard.SendKeys(city);
-            countryCard.SendKeys(country);
+            new SelectElement(countryCard).SelectByText("United States");
             zipCode.SendKeys(zip);
-            State.SendKeys(state);
+            new SelectElement(State).SelectByText("Texas");
             areaCode.SendKeys(area);
-            phoneNumber.SendKeys(phone);
-            chkAgreement.Click();            
+            phoneNumber.SendKeys(phone);                     
         }
 
         public void Purchase()
         {
+            chkAgreement.Click();
             purchaseNowButton.Click();
             IJavaScriptExecutor jse = (IJavaScriptExecutor)driver;
             jse.ExecuteScript("window.scrollBy(0,250)", "");
-        }
-        
-        
-
-
-
-
-
-
-
-
-
-
+        } 
+    
 
     }
 }
