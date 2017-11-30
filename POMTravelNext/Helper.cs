@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Support.PageObjects;
+using System.Collections.ObjectModel;
 
 namespace POMTravelNext
 {
@@ -29,7 +30,7 @@ namespace POMTravelNext
         {
             try
             {
-                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
                 wait.Until(d => (element as IWebElement).Displayed);
                 return true;
             }
@@ -38,5 +39,27 @@ namespace POMTravelNext
                 return false;
             }
         }
+
+        ////////////////////////////////////////
+
+        //public static IWebElement FindElement(this IWebDriver driver, By by, int timeoutInSeconds)
+        //{
+        //    if (timeoutInSeconds > 0)
+        //    {
+        //        var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutInSeconds));
+        //        return wait.Until(drv => drv.FindElement(by));
+        //    }
+        //    return driver.FindElement(by);
+        //}
+
+        //public static ReadOnlyCollection<IWebElement> FindElements(this IWebDriver driver, By by, int timeoutInSeconds)
+        //{
+        //    if (timeoutInSeconds > 0)
+        //    {
+        //        var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutInSeconds));
+        //        return wait.Until(drv => (drv.FindElements(by).Count > 0) ? drv.FindElements(by) : null);
+        //    }
+        //    return driver.FindElements(by);
+        //}
     }
 }

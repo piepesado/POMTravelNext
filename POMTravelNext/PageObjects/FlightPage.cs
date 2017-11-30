@@ -75,7 +75,7 @@ namespace POMTravelNext.PageObjects
             roundTripRadio.Click();
         }
         
-        public void SearchFlight(string from, string to, string leaveDate, string returnDate, string leaveH, string returnH)
+        public void SearchFlight(string from, string to, string leaveDate, string returnDate)
         {
             fromField.SendKeys(from);
             fromField.SendKeys(Keys.Tab);
@@ -83,8 +83,8 @@ namespace POMTravelNext.PageObjects
             toField.SendKeys(Keys.Tab);
             leaveDatePicker.SendKeys(leaveDate);
             returnDatePicker.SendKeys(returnDate);
-            new SelectElement(leaveHourDrop).SelectByText(leaveH);
-            new SelectElement(returnHourDrop).SelectByText(returnH);
+            //new SelectElement(leaveHourDrop).SelectByText(leaveH);
+            //new SelectElement(returnHourDrop).SelectByText(returnH);
             if(!nearAirChk.Selected)
                 nearAirChk.Click();
             searchButton.Click();

@@ -106,9 +106,11 @@
   <ItemGroup>
     <Compile Include="Helper.cs" />
     <Compile Include="PageObjects\BackOfficePage.cs" />
+    <Compile Include="PageObjects\CheckOutPage.cs" />
     <Compile Include="PageObjects\HotelPage.cs" />
     <Compile Include="PageObjects\FlightPage.cs" />
     <Compile Include="PageObjects\ItineraryPage.cs" />
+    <Compile Include="PageObjects\IWait.cs" />
     <Compile Include="PageObjects\LoginPage.cs" />
     <Compile Include="PageObjects\SearchingPage.cs" />
     <Compile Include="PageObjects\ResultsPage.cs" />

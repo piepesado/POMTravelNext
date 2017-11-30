@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
 
 namespace POMTravelNext.PageObjects
 {
@@ -23,7 +24,9 @@ namespace POMTravelNext.PageObjects
 
         public void ClickCheckout()
         {
-            Helper.WaitForElementVisible(driver, itineraryCheckout);
+            //Helper.WaitForElementVisible(driver, itineraryCheckout);
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
+            wait.Until(ExpectedConditions.ElementToBeClickable(itineraryCheckout));
             itineraryCheckout.Click();
             IJavaScriptExecutor jse = (IJavaScriptExecutor)driver;
             jse.ExecuteScript("window.scrollBy(0,250)", "");
