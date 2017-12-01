@@ -93,6 +93,12 @@ namespace POMTravelNext.PageObjects
                 nearAirChk.Click();
             searchButton.Click();
         }
-        //Implement search fight for multi city
+        //Implement search fight for and one way multi city
+
+        public void SearchFlightOneWay(string from, string leaveDate)
+        {
+            fromField.SendKeys(from);
+            leaveDatePicker.SendKeys(leaveDate);
+        }
     }
 }

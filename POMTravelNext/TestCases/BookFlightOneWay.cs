@@ -68,11 +68,11 @@ namespace POMTravelNext
             Assert.True(driver.Title.Contains("Mystique"));
             FlightPage flight = new FlightPage(driver);
             flight.SelectOneWayTrip();
-            flight.SearchFlight(fromCity, toCity, leave, returnD);
+            flight.SearchFlightOneWay(fromCity, leave);
 
             Thread.Sleep(2000);
-            MultipleLocationPage multi = new MultipleLocationPage(driver);
-            multi.ClickContinue();
+            //MultipleLocationPage multi = new MultipleLocationPage(driver);
+            //multi.ClickContinue();
             ResultsPage results = new ResultsPage(driver);
             results.ResultsPageActions();
             ItineraryPage itinerary = new ItineraryPage(driver);
