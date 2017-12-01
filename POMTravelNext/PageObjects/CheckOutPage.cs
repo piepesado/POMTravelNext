@@ -1,6 +1,8 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
+using System;
+using System.Threading;
 
 namespace POMTravelNext.PageObjects
 {
@@ -95,6 +97,9 @@ namespace POMTravelNext.PageObjects
         [FindsBy(How = How.Id, Using = "ucPWP_ctl16_57507_ctl01_57512_dvBtnPurchase")]
         private IWebElement purchaseNowButton;
 
+        [FindsBy(How = How.Id, Using = "ucPWP_ctl16_57507_ctl00_57511_btnNext")]
+        private IWebElement confirmPopUpButton;
+
         //Actions
 
         public void CompleteTravelerDetails(string title, string name, string middle, string last, string email)
@@ -106,10 +111,10 @@ namespace POMTravelNext.PageObjects
             paxLast.SendKeys(last);
             paxEmail.SendKeys(email);
             new SelectElement(paxGender).SelectByText("Male");
-            new SelectElement(paxMonth).SelectByIndex(3);
-            new SelectElement(paxMonth).SelectByIndex(4);
+            new SelectElement(paxDay).SelectByText("6");
+            new SelectElement(paxMonth).SelectByText("May");
             //It does not enter month, its not being validated, since birth date is mandatory
-            new SelectElement(paxYear).SelectByIndex(10);
+            new SelectElement(paxYear).SelectByText("1990");
         }
 
         public void EnterCreditCard(string number, string cvv, string name)
@@ -117,8 +122,8 @@ namespace POMTravelNext.PageObjects
             cardNumber.SendKeys(number);
             cvvNumber.SendKeys(cvv);
             cardName.SendKeys(name);
-            new SelectElement(paxMonth).SelectByIndex(4);
-            new SelectElement(paxYear).SelectByIndex(2);
+            new SelectElement(expMonth).SelectByValue("04");
+            new SelectElement(expYear).SelectByValue("2018");
             ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", addressLine);
         }
 
@@ -126,9 +131,13 @@ namespace POMTravelNext.PageObjects
         {
             addressLine.SendKeys(address1);            
             cityCard.SendKeys(city);
-            new SelectElement(countryCard).SelectByText("United States");
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementToBeClickable(countryCard));
+            new SelectElement(countryCard).SelectByValue("US");            
+            Thread.Sleep(3000);
+            wait.Until(ExpectedConditions.ElementToBeClickable(State));
+            new SelectElement(State).SelectByValue("TX");
             zipCode.SendKeys(zip);
-            new SelectElement(State).SelectByText("Texas");
             areaCode.SendKeys(area);
             phoneNumber.SendKeys(phone);                     
         }
@@ -139,7 +148,14 @@ namespace POMTravelNext.PageObjects
             purchaseNowButton.Click();
             IJavaScriptExecutor jse = (IJavaScriptExecutor)driver;
             jse.ExecuteScript("window.scrollBy(0,250)", "");
-        } 
+        }
+        
+        public void ConfirmPurchase()
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromDays(10));
+            wait.Until(ExpectedConditions.ElementToBeClickable(confirmPopUpButton));
+            confirmPopUpButton.Click();
+        }
     
 
     }

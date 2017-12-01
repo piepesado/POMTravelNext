@@ -60,7 +60,7 @@ namespace POMTravelNext
             string addressLine1 = "Legacy Drive Suite 53600";
             string city = "Piano";
             //string country = "United States";
-            string zipCode = "75034";
+            string zip = "75034";
             //string state = "Texas";
             string areaBilling = "9090";
             string phoneBilling = "89890898875";
@@ -93,13 +93,13 @@ namespace POMTravelNext
             Assert.True(driver.Title.Contains("Checkout"));
             //userLog.LogAsGuest(fName, lName, email, email, areaP, numberP);
             //userLog.SubmitGuest();
-
             CheckOutPage checkOut = new CheckOutPage(driver);
             checkOut.CompleteTravelerDetails(title, fName, middle, lName, email);            
             checkOut.EnterCreditCard(cardNumber, cvvNumber, nameCard);            
-            checkOut.EnterBillingAddress(addressLine1, city, zipCode, areaBilling, phoneBilling);
-            checkOut.Purchase();
-            Thread.Sleep(4000);
+            checkOut.EnterBillingAddress(addressLine1, city, zip, areaBilling, phoneBilling);
+            checkOut.Purchase();            
+            checkOut.ConfirmPurchase();
+            Thread.Sleep(3000);
         }
 
         [TearDown]
