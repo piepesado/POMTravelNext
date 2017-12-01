@@ -90,6 +90,9 @@ namespace POMTravelNext.PageObjects
         [FindsBy(How = How.Id, Using = "ucPWP_ctl16_57507_ctl01_57512_ctlCCPayment_txtContactNumber")]
         private IWebElement phoneNumber;
 
+        [FindsBy(How = How.Id, Using = "ucPWP_ctl16_57507_ctl01_57512_ddlPaymentType")]
+        private IWebElement payBy;
+
         //Checkbox
         [FindsBy(How = How.Id, Using = "ucPWP_ctl16_57507_ctl01_57512_cbTermsConditions")]
         private IWebElement chkAgreement;
@@ -155,8 +158,6 @@ namespace POMTravelNext.PageObjects
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromDays(10));
             wait.Until(ExpectedConditions.ElementToBeClickable(confirmPopUpButton));
             confirmPopUpButton.Click();
-        }
-    
-
+        }    
     }
 }

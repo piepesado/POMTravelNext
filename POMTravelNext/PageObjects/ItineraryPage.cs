@@ -19,14 +19,12 @@ namespace POMTravelNext.PageObjects
         private IWebElement itineraryCheckout;
 
         public void ClickCheckout()
-        {
-            //Helper.WaitForElementVisible(driver, itineraryCheckout);
+        {           
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
             wait.Until(ExpectedConditions.ElementToBeClickable(itineraryCheckout));
             itineraryCheckout.Click();
             IJavaScriptExecutor jse = (IJavaScriptExecutor)driver;
-            jse.ExecuteScript("window.scrollBy(0,250)", "");
-            //((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", itineraryCheckout);
+            jse.ExecuteScript("window.scrollBy(0,250)", "");            
         }
     }
 

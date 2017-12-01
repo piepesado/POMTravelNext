@@ -68,6 +68,16 @@ namespace POMTravelNext.PageObjects
             multiCityTripRadio.Click();
             roundTripRadio.Click();
         }
+
+        public void SelectOneWayTrip()
+        {
+            oneWayRadio.Click();
+        }
+
+        public void SelectMultiCity()
+        {
+            multiCityTripRadio.Click();
+        }
         
         public void SearchFlight(string from, string to, string leaveDate, string returnDate)
         {
@@ -83,5 +93,6 @@ namespace POMTravelNext.PageObjects
                 nearAirChk.Click();
             searchButton.Click();
         }
+        //Implement search fight for multi city
     }
 }
