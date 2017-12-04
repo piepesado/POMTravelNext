@@ -105,7 +105,7 @@ namespace POMTravelNext.PageObjects
 
         //Actions
 
-        public void CompleteTravelerDetails(string title, string name, string middle, string last, string email)
+        public void CompleteTravelerDetails(string title, string name, string middle, string last, string email, string gender, string day, string month, string year)
         {
             //Should I use int for numbers and then convert them to string?
             new SelectElement(paxTitle).SelectByText(title);
@@ -113,11 +113,11 @@ namespace POMTravelNext.PageObjects
             paxMiddle.SendKeys(middle);
             paxLast.SendKeys(last);
             paxEmail.SendKeys(email);
-            new SelectElement(paxGender).SelectByText("Male");
-            new SelectElement(paxDay).SelectByText("6");
-            new SelectElement(paxMonth).SelectByText("May");
+            new SelectElement(paxGender).SelectByText(gender);
+            new SelectElement(paxDay).SelectByText(day);
+            new SelectElement(paxMonth).SelectByValue(month);
             //It does not enter month, its not being validated, since birth date is mandatory
-            new SelectElement(paxYear).SelectByText("1990");
+            new SelectElement(paxYear).SelectByText(year);
         }
 
         public void EnterCreditCard(string number, string cvv, string name)

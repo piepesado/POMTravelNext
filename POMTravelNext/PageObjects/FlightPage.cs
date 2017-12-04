@@ -19,14 +19,15 @@ namespace POMTravelNext.PageObjects
         //From and To fields
         [FindsBy(How = How.Id, Using = "ucPWP_ctl14_12066_txtFlightDepartLoc")]
         private IWebElement fromField;
+
         [FindsBy(How = How.Id, Using = "ucPWP_ctl14_12066_txtFlightArriveLoc")]
-        private IWebElement toField;
+        private IWebElement toField;        
 
         //Datepickers
         [FindsBy(How = How.Id, Using = "ucPWP_ctl14_12066_txtFlightDepartDate")]
         private IWebElement leaveDatePicker;
         [FindsBy(How = How.Id, Using = "ucPWP_ctl14_12066_txtFlightArriveDate")]
-        private IWebElement returnDatePicker;
+        private IWebElement returnDatePicker;        
 
         //Dropdowns
         [FindsBy(How = How.Id, Using = "ucPWP_ctl14_12066_ddlFlightDepartTime")]
@@ -51,7 +52,27 @@ namespace POMTravelNext.PageObjects
 
         //Search button
         [FindsBy(How = How.Id, Using = "ucPWP_ctl14_12066_btnSearch")]
-        private IWebElement searchButton;     
+        private IWebElement searchButton;
+
+        //Elements for multiple city
+
+        [FindsBy(How = How.Id, Using = "ucPWP_ctl14_12066_txtFlightDepartLoc1")]
+        private IWebElement fromField1;
+
+        [FindsBy(How = How.Id, Using = "ucPWP_ctl14_12066_txtFlightArriveLoc1")]
+        private IWebElement toField1;
+
+        [FindsBy(How = How.Id, Using = "ucPWP_ctl14_12066_txtFlightDepartLoc2")]
+        private IWebElement fromField2;
+
+        [FindsBy(How = How.Id, Using = "ucPWP_ctl14_12066_txtFlightArriveLoc2")]
+        private IWebElement toField2;
+
+        [FindsBy(How = How.Id, Using = "ucPWP_ctl14_12066_txtFlightDepartDate1")]
+        private IWebElement returnDatePicker1;
+
+        [FindsBy(How = How.Id, Using = "ucPWP_ctl14_12066_txtFlightDepartDate2")]
+        private IWebElement returnDatePicker2;
 
         // Actions
         public void SelectTime()
@@ -94,7 +115,27 @@ namespace POMTravelNext.PageObjects
             searchButton.Click();
         }
         //Implement search fight for and one way multi city
+        public void SearchFlightMultiCity(string from1, string to1, string leaveDate1, string from2, string to2, string leaveDate2)
+        {
+            fromField1.SendKeys(from1);
+            fromField1.SendKeys(Keys.Tab);
+            toField1.SendKeys(to1);
+            toField1.SendKeys(Keys.Tab);
+            returnDatePicker1.SendKeys(leaveDate1);
+            returnDatePicker1.SendKeys(Keys.Tab);
 
+            fromField2.SendKeys(from2);
+            fromField2.SendKeys(Keys.Tab);
+            toField2.SendKeys(to2);
+            toField2.SendKeys(Keys.Tab);
+            returnDatePicker2.SendKeys(leaveDate2);
+
+            //new SelectElement(leaveHourDrop).SelectByText(leaveH);
+            //new SelectElement(returnHourDrop).SelectByText(returnH);
+            if (!nearAirChk.Selected)
+                nearAirChk.Click();
+            searchButton.Click();
+        }
         public void SearchFlightOneWay(string from, string to, string leaveDate)
         {
             fromField.SendKeys(from);

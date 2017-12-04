@@ -38,6 +38,10 @@ namespace POMTravelNext
             string email = "malcom@acdc.com";
             string areaP = "312";
             string numberP = "6905367";
+            string gender = "Male";
+            string day = "7";
+            string month = "9";
+            string year = "1997";
             //Parameters Traveler Details
             string title = "Dr.";
             string middle = "Jay";
@@ -94,7 +98,7 @@ namespace POMTravelNext
             //userLog.LogAsGuest(fName, lName, email, email, areaP, numberP);
             //userLog.SubmitGuest();
             CheckOutPage checkOut = new CheckOutPage(driver);
-            checkOut.CompleteTravelerDetails(title, fName, middle, lName, email);            
+            checkOut.CompleteTravelerDetails(title, fName, middle, lName, email, gender, day, month, year);            
             checkOut.EnterCreditCard(cardNumber, cvvNumber, nameCard);            
             checkOut.EnterBillingAddress(addressLine1, city, zip, areaBilling, phoneBilling);
             checkOut.Purchase();            

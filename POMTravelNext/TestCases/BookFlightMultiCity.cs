@@ -26,17 +26,23 @@ namespace POMTravelNext
             string pass = "P@ss123";
             string cid = "20033";
             //Parameters Search Flight
-            string fromCity = "Madrid";
-            string toCity = "Paris";
+            string fromCity = "Barcelona, Spain and Canary Islands - Barcelona  El Prat Arpt (BCN)";
+            string toCity = "Madrid, Spain and Canary Islands - Barajas Arpt (MAD)";
             string leave = "01/13/2018";
             string returnD = "01/28/2018";
-
+            string fromCity2 = "Paris, France - Charles De Gaulle Intl Arpt (CDG)";
+            string toCity2 = "Rome, Italy - Fiumicino Arpt (FCO)";
+            string leave2 = "02/02/2018";
             //Parameters Guest User Log In
             string fName = "Malcom";
             string lName = "Young";
             string email = "malcom@acdc.com";
             string areaP = "312";
             string numberP = "6905367";
+            string gender = "Male";
+            string day = "7";
+            string month = "9";
+            string year = "1997";
             //Parameters Traveler Details
             string title = "Dr.";
             string middle = "Jay";
@@ -68,11 +74,11 @@ namespace POMTravelNext
             Assert.True(driver.Title.Contains("Mystique"));
             FlightPage flight = new FlightPage(driver);
             flight.SelectMultiCity();
-            flight.SearchFlight(fromCity, toCity, leave, returnD);//change
+            flight.SearchFlightMultiCity(fromCity, toCity, leave, fromCity2, toCity2, leave2);
 
             Thread.Sleep(2000);
-            MultipleLocationPage multi = new MultipleLocationPage(driver);
-            multi.ClickContinue();
+            //MultipleLocationPage multi = new MultipleLocationPage(driver);
+            //multi.ClickContinue();
             ResultsPage results = new ResultsPage(driver);
             results.ResultsPageActions();
             ItineraryPage itinerary = new ItineraryPage(driver);
@@ -81,12 +87,12 @@ namespace POMTravelNext
 
             Assert.True(driver.Title.Contains("Checkout"));
             CheckOutPage checkOut = new CheckOutPage(driver);
-            checkOut.CompleteTravelerDetails(title, fName, middle, lName, email);
+            checkOut.CompleteTravelerDetails(title, fName, middle, lName, email, gender, day, month, year);
             checkOut.EnterCreditCard(cardNumber, cvvNumber, nameCard);
             checkOut.EnterBillingAddress(addressLine1, city, zip, areaBilling, phoneBilling);
             checkOut.Purchase();
             checkOut.ConfirmPurchase();
-            Thread.Sleep(5000);
+            Thread.Sleep(10000);
         }
 
         [TearDown]
