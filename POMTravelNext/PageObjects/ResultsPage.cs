@@ -87,7 +87,9 @@ namespace POMTravelNext.PageObjects
 
         public void SortByList()
         {
-            Helper.WaitForElementVisible(driver, listView);
+            //Helper.WaitForElementVisible(driver, listView);
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromDays(10));
+            wait.Until(ExpectedConditions.ElementToBeClickable(listView));
             listView.Click();
         }
 
@@ -157,6 +159,12 @@ namespace POMTravelNext.PageObjects
             HidePriceFilter();
             ClickSortButtons();
             MySearches();
+            AddFlightToCart();
+            ClickCheckOut();
+        }
+
+        public void AddToCart()
+        {
             AddFlightToCart();
             ClickCheckOut();
         }

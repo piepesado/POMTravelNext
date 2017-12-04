@@ -95,10 +95,12 @@ namespace POMTravelNext.PageObjects
         }
         //Implement search fight for and one way multi city
 
-        public void SearchFlightOneWay(string from, string leaveDate)
+        public void SearchFlightOneWay(string from, string to, string leaveDate)
         {
             fromField.SendKeys(from);
+            toField.SendKeys(to);
             leaveDatePicker.SendKeys(leaveDate);
+            searchButton.Click();
         }
     }
 }
