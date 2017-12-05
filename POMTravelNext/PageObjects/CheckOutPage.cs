@@ -16,9 +16,8 @@ namespace POMTravelNext.PageObjects
             PageFactory.InitElements(driver, this);
         }
 
-        //Pax Details Locators
+        //Pax Details Locators        
         
-        //Dropdown
         [FindsBy(How = How.Id, Using = "ucPWP_ctl16_57507_ctl00_57511_ucPassengerInfo_rptTripInfo_ctl00_rptPassenger_ctl00_paxDetail_ddlTitle")]
         private IWebElement paxTitle;
 
@@ -33,6 +32,9 @@ namespace POMTravelNext.PageObjects
 
         [FindsBy(How = How.Id, Using = "ucPWP_ctl16_57507_ctl00_57511_ucPassengerInfo_rptTripInfo_ctl00_rptPassenger_ctl00_paxDetail_txtEmailAdd")]
         private IWebElement paxEmail;
+
+        [FindsBy(How = How.Id, Using = "ucPWP_ctl16_57507_ctl00_57511_ucPassengerInfo_rptTripInfo_ctl00_rptPassenger_ctl00_paxDetail_lblPassengerLbl")]
+        private IWebElement adult1Label;
 
         //Dropdowns
         [FindsBy(How = How.Id, Using = "ucPWP_ctl16_57507_ctl00_57511_ucPassengerInfo_rptTripInfo_ctl00_rptPassenger_ctl00_paxDetail_drpGender")]
@@ -120,13 +122,13 @@ namespace POMTravelNext.PageObjects
             new SelectElement(paxYear).SelectByText(year);
         }
 
-        public void EnterCreditCard(string number, string cvv, string name)
+        public void EnterCreditCard(string number, string cvv, string name, string monthCC, string yearCC)
         {
             cardNumber.SendKeys(number);
             cvvNumber.SendKeys(cvv);
             cardName.SendKeys(name);
-            new SelectElement(expMonth).SelectByValue("04");
-            new SelectElement(expYear).SelectByValue("2018");
+            new SelectElement(expMonth).SelectByText(monthCC);
+            new SelectElement(expYear).SelectByText(yearCC);
             ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", addressLine);
         }
 
@@ -136,10 +138,10 @@ namespace POMTravelNext.PageObjects
             cityCard.SendKeys(city);
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
             wait.Until(ExpectedConditions.ElementToBeClickable(countryCard));
-            new SelectElement(countryCard).SelectByValue("US");            
+            new SelectElement(countryCard).SelectByText("United States");            
             Thread.Sleep(3000);
             wait.Until(ExpectedConditions.ElementToBeClickable(State));
-            new SelectElement(State).SelectByValue("TX");
+            new SelectElement(State).SelectByText("Texas");
             zipCode.SendKeys(zip);
             areaCode.SendKeys(area);
             phoneNumber.SendKeys(phone);                     
@@ -158,6 +160,15 @@ namespace POMTravelNext.PageObjects
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromDays(10));
             wait.Until(ExpectedConditions.ElementToBeClickable(confirmPopUpButton));
             confirmPopUpButton.Click();
-        }    
+        }
+
+        public Boolean CheckAdultsLink()
+        {
+            Boolean linkOk = false;
+            if (adult1Label.Text == "Adult 1")
+                linkOk = true;
+            return linkOk;
+        }
+     
     }
 }

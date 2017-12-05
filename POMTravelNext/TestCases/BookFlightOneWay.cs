@@ -48,7 +48,9 @@ namespace POMTravelNext
             //Parameters Credit Card
             string cardNumber = "4111111111111111";
             string cvvNumber = "123";
-            string nameCard = "Rohan Pandit";            
+            string nameCard = "Rohan Pandit";
+            string expMonth = "Apr";
+            string expYear = "2018";
 
             //Parameters Billing Address
             string addressLine1 = "Legacy Drive Suite 53600";
@@ -65,8 +67,7 @@ namespace POMTravelNext
             goTo.LogOn(user, pass, cid);
             BackOfficePage backOff = new BackOfficePage(driver);
             backOff.ClickFrontOffice();
-            HotelPage hotel = new HotelPage(driver);
-            Thread.Sleep(2000);
+            HotelPage hotel = new HotelPage(driver);            
             hotel.ClickFlightLink();
 
             Assert.True(driver.Title.Contains("Mystique"));
@@ -74,7 +75,6 @@ namespace POMTravelNext
             flight.SelectOneWayTrip();
             flight.SearchFlightOneWay(fromCity, toCity, leave);
 
-            Thread.Sleep(2000);
             MultipleLocationPage multi = new MultipleLocationPage(driver);
             multi.ClickContinue();
             ResultsPage results = new ResultsPage(driver);
@@ -86,11 +86,15 @@ namespace POMTravelNext
             Assert.True(driver.Title.Contains("Checkout"));            
             CheckOutPage checkOut = new CheckOutPage(driver);
             checkOut.CompleteTravelerDetails(title, fName, middle, lName, email, gender, day, month, year);
-            checkOut.EnterCreditCard(cardNumber, cvvNumber, nameCard);
+            checkOut.EnterCreditCard(cardNumber, cvvNumber, nameCard, expMonth, expYear);
             checkOut.EnterBillingAddress(addressLine1, city, zip, areaBilling, phoneBilling);
             checkOut.Purchase();
             checkOut.ConfirmPurchase();
-            Thread.Sleep(7000);
+            ConfirmationPage confirm = new ConfirmationPage(driver);
+            Assert.True(confirm.CheckLinksPresent());
+            Assert.True(driver.Title.Equals("DemoMystiqueClient :: Confirmation"));
+            confirm.ScrollBottomPage();
+            Assert.True(confirm.BreakupLinksPresent());
         }
 
         [TearDown]
