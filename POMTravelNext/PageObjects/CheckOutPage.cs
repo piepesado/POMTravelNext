@@ -132,16 +132,16 @@ namespace POMTravelNext.PageObjects
             ((IJavaScriptExecutor)driver).ExecuteScript("arguments[0].scrollIntoView(true);", addressLine);
         }
 
-        public void EnterBillingAddress(string address1, string city, string zip, string area, string phone)
+        public void EnterBillingAddress(string address1, string city, string zip, string area, string phone, string country, string state)
         {
             addressLine.SendKeys(address1);            
             cityCard.SendKeys(city);
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
             wait.Until(ExpectedConditions.ElementToBeClickable(countryCard));
-            new SelectElement(countryCard).SelectByText("United States");            
+            new SelectElement(countryCard).SelectByText(country);            
             Thread.Sleep(3000);
             wait.Until(ExpectedConditions.ElementToBeClickable(State));
-            new SelectElement(State).SelectByText("Texas");
+            new SelectElement(State).SelectByText(state);
             zipCode.SendKeys(zip);
             areaCode.SendKeys(area);
             phoneNumber.SendKeys(phone);                     

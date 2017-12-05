@@ -62,10 +62,10 @@ namespace POMTravelNext
 
             //Parameters Billing Address
             string addressLine1 = "Legacy Drive Suite 53600";
-            string city = "Piano";
-            //string country = "United States";
+            string city = "Piano";            
             string zip = "75034";
-            //string state = "Texas";
+            string country = "United States";
+            string state = "Texas";
             string areaBilling = "9090";
             string phoneBilling = "89890898875";
 
@@ -99,7 +99,7 @@ namespace POMTravelNext
             Assert.True(checkOut.CheckAdultsLink());
             checkOut.CompleteTravelerDetails(title, fName, middle, lName, email, gender, day, month, year);            
             checkOut.EnterCreditCard(cardNumber, cvvNumber, nameCard, expMonth, expYear);            
-            checkOut.EnterBillingAddress(addressLine1, city, zip, areaBilling, phoneBilling);
+            checkOut.EnterBillingAddress(addressLine1, city, zip, areaBilling, phoneBilling, country, state);
             checkOut.Purchase();            
             checkOut.ConfirmPurchase();
             ConfirmationPage confirm = new ConfirmationPage(driver);
