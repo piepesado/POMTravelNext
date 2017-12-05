@@ -21,9 +21,7 @@ namespace POMTravelNext.PageObjects
 
         //Hotel locators
         [FindsBy(How = How.LinkText, Using = "Flight")]
-        private IWebElement flightLink;
-        
-        
+        private IWebElement flightLink;           
         
 
         public void ClickFlightLink()
