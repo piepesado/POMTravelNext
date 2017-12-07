@@ -26,7 +26,7 @@ namespace POMTravelNext.PageObjects
         public void ClickContinue()
         {
             continueButton.Click();
-            Thread.Sleep(7000);
+            //Thread.Sleep(7000);
         }
     }
 }

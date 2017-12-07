@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Support.PageObjects;
-using System.Collections.ObjectModel;
 
 namespace POMTravelNext
 {
     class Helper
     {
-        IWebDriver driver;// Lots of code re use for every page object class..
+        IWebDriver driver;
 
         public Helper(IWebDriver driver)
         {

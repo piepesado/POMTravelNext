@@ -28,11 +28,11 @@ namespace POMTravelNext
             //Parameters Search Flight
             string fromCity = "Barcelona, Spain and Canary Islands - Barcelona  El Prat Arpt (BCN)";
             string toCity = "Madrid, Spain and Canary Islands - Barajas Arpt (MAD)";
-            string leave = "01/13/2018";
-            string returnD = "01/28/2018";
+            string leave = "02/13/2018";
+            string returnD = "02/28/2018";
             string fromCity2 = "Paris, France - Charles De Gaulle Intl Arpt (CDG)";
             string toCity2 = "Rome, Italy - Fiumicino Arpt (FCO)";
-            string leave2 = "02/02/2018";
+            string leave2 = "03/02/2018";
             //Parameters Guest User Log In
             string fName = "Malcom";
             string lName = "Young";
@@ -92,6 +92,7 @@ namespace POMTravelNext
             checkOut.EnterBillingAddress(addressLine1, city, zip, areaBilling, phoneBilling, country, state);
             checkOut.Purchase();
             checkOut.ConfirmPurchase();
+
             ConfirmationPage confirm = new ConfirmationPage(driver);
             Assert.True(confirm.CheckLinksPresent());
             Assert.True(driver.Title.Equals("DemoMystiqueClient :: Confirmation"));

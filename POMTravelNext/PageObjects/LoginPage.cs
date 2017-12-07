@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using NUnit.Framework;
 
 namespace POMTravelNext.PageObjects
 {
@@ -20,7 +15,7 @@ namespace POMTravelNext.PageObjects
         }
 
         [FindsBy(How = How.Id, Using = "ucPWP_ctl07_2524_ctl00_2597_txtUserName")]
-        private IWebElement UserName { get; set; }// Why should this getters and setters be used?
+        private IWebElement UserName { get; set; }
 
         [FindsBy(How = How.Id, Using = "ucPWP_ctl07_2524_ctl00_2597_txtPassword")]
         private IWebElement passWord;
@@ -52,6 +47,7 @@ namespace POMTravelNext.PageObjects
             passWord.SendKeys(pass);
             cidNumber.SendKeys(cid);
             captchaField.Click();
+            //10 seconds wait to enter captcha
             Thread.Sleep(10000);
             signIn.Click();            
         }

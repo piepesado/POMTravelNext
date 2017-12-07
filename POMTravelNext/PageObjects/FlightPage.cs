@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Interactions;
+using System;
 
 namespace POMTravelNext.PageObjects
 {
@@ -114,7 +115,7 @@ namespace POMTravelNext.PageObjects
                 nearAirChk.Click();
             searchButton.Click();
         }
-        //Implement search fight for and one way multi city
+        
         public void SearchFlightMultiCity(string from1, string to1, string leaveDate1, string from2, string to2, string leaveDate2)
         {
             fromField1.SendKeys(from1);
@@ -132,6 +133,8 @@ namespace POMTravelNext.PageObjects
 
             //new SelectElement(leaveHourDrop).SelectByText(leaveH);
             //new SelectElement(returnHourDrop).SelectByText(returnH);
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
+            wait.Until(ExpectedConditions.ElementToBeClickable(nearAirChk));
             if (!nearAirChk.Selected)
                 nearAirChk.Click();
             searchButton.Click();

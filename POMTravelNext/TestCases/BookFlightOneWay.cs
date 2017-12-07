@@ -2,7 +2,6 @@
 using POMTravelNext.PageObjects;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System.Threading;
 
 namespace POMTravelNext
 {
@@ -90,6 +89,7 @@ namespace POMTravelNext
             checkOut.EnterBillingAddress(addressLine1, city, zip, areaBilling, phoneBilling, country, state);
             checkOut.Purchase();
             checkOut.ConfirmPurchase();
+
             ConfirmationPage confirm = new ConfirmationPage(driver);
             Assert.True(confirm.CheckLinksPresent());
             Assert.True(driver.Title.Equals("DemoMystiqueClient :: Confirmation"));

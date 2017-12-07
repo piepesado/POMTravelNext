@@ -2,7 +2,6 @@
 using POMTravelNext.PageObjects;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System.Threading;
 
 namespace POMTravelNext
 {
@@ -10,7 +9,7 @@ namespace POMTravelNext
     public class BookFlightRound
     {
         IWebDriver driver;        
-
+        
         [SetUp]
         public void SetUp()
         {
@@ -25,6 +24,7 @@ namespace POMTravelNext
             string user = "dnan@travelleaders.com";
             string pass = "P@ss123";
             string cid = "20033";
+
             //Parameters Search Flight
             string fromCity = "Madrid";// If there are multiple values for a given city multiple location page is displayed
             string toCity = "Paris";
@@ -32,6 +32,7 @@ namespace POMTravelNext
             string returnD = "01/28/2018";
             //string leaveH = "11:00 AM";
             //string returnH = "10:00 PM";
+
             //Parameters Guest User Log In
             string fName = "Malcom";
             string lName = "Young";
@@ -42,16 +43,10 @@ namespace POMTravelNext
             string day = "7";
             string month = "9";
             string year = "1997";
+
             //Parameters Traveler Details
             string title = "Dr.";
-            string middle = "Jay";
-            //string gender = "Male";
-            /*
-            Dont know why its not able to find birthday dropdowns when selection is passed by index or strings.
-            int month = 3;
-            int day = 4;
-            int year = 10;
-            */
+            string middle = "Jay";          
 
             //Parameters Credit Card
             string cardNumber = "4111111111111111";
@@ -89,9 +84,8 @@ namespace POMTravelNext
             results.ResultsPageActions();
             ItineraryPage itinerary = new ItineraryPage(driver);
             Assert.True(driver.Title.Contains("Trip folder"));
-            itinerary.ClickCheckout();            
+            itinerary.ClickCheckout();                      
             
-            //UserPage userLog = new UserPage(driver);
             Assert.True(driver.Title.Contains("Checkout"));
             //userLog.LogAsGuest(fName, lName, email, email, areaP, numberP);
             //userLog.SubmitGuest();
@@ -102,6 +96,7 @@ namespace POMTravelNext
             checkOut.EnterBillingAddress(addressLine1, city, zip, areaBilling, phoneBilling, country, state);
             checkOut.Purchase();            
             checkOut.ConfirmPurchase();
+
             ConfirmationPage confirm = new ConfirmationPage(driver);
             Assert.True(confirm.CheckLinksPresent());
             Assert.True(driver.Title.Equals("DemoMystiqueClient :: Confirmation"));

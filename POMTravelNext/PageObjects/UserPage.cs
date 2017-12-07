@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using OpenQA.Selenium.Support.UI;
 
 namespace POMTravelNext.PageObjects
 {
@@ -41,12 +35,7 @@ namespace POMTravelNext.PageObjects
         private IWebElement submitGuest;
 
         public void LogAsGuest(string first, string last, string emailA, string verify, string area, string number)
-        {
-            //new WebDriverWait((driver, TimeSpan.FromSeconds(ITimeouts)).Until(ExpectedConditions.ElementExists(firstName)));
-            //WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
-            //wait.Until(ExpectedConditions.ElementToBeClickable(firstName));
-            
-            //IWait.Until(ExpectedConditions.ElementToBeClickable(firstName));
+        {            
             firstName.SendKeys(first);
             lastName.SendKeys(last);
             email.SendKeys(emailA);
