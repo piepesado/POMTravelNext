@@ -9,26 +9,22 @@ using OpenQA.Selenium.Support.PageObjects;
 
 namespace POMTravelNext.PageObjects
 {
-    class HotelPage
-    {
-        IWebDriver driver;
-
-        public HotelPage(IWebDriver driver)
-        {
-            this.driver = driver;
-            PageFactory.InitElements(driver, this);
-        }
+    public class HotelPage : BasePage
+    {        
 
         //Hotel locators
         [FindsBy(How = How.LinkText, Using = "Flight")]
-        private IWebElement flightLink;      
+        private IWebElement flightLink;
         
-        
+        public HotelPage(IWebDriver driver) : base(driver)
+        {
+
+        }              
 
         public void ClickFlightLink()
         {
             // Helper.WaitForElementVisible(driver, flightLink);
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(30));
             wait.Until(ExpectedConditions.ElementToBeClickable(flightLink));
             flightLink.Click();
 

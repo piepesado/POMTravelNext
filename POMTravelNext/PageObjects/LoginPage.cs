@@ -1,21 +1,17 @@
 ﻿using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using OpenQA.Selenium.Support.UI;
+using System;
 
 namespace POMTravelNext.PageObjects
 {
-    class LoginPage
+    public class LoginPage : BasePage
     {
-        private IWebDriver driver;
-
-        public LoginPage(IWebDriver driver)
-        {
-            this.driver = driver;
-            PageFactory.InitElements(driver, this);
-        }
+        private const string PAGE_URL = "http://managedemo.travelnxt.com/Login";
 
         [FindsBy(How = How.Id, Using = "ucPWP_ctl07_2524_ctl00_2597_txtUserName")]
-        private IWebElement UserName { get; set; }
+        private IWebElement userName;
 
         [FindsBy(How = How.Id, Using = "ucPWP_ctl07_2524_ctl00_2597_txtPassword")]
         private IWebElement passWord;
@@ -29,27 +25,69 @@ namespace POMTravelNext.PageObjects
         [FindsBy(How = How.Id, Using = "ucPWP_ctl07_2524_ctl00_2597_lnkBtnSignIn")]
         private IWebElement signIn;
 
-        // Add forgot password link
-
-        public void GoToPage()
+        //Getters and Setters
+        public string Username
         {
-            driver.Navigate().GoToUrl("http://managedemo.travelnxt.com/Login");
+            get
+            {
+                return userName.Text;
+            }
+            set
+            {
+                userName.SendKeys(value);
+            }
         }
 
-        public bool IsPageOpened()// Shouldnt be an Assert be implemented here?
-        {// This should be added to a Helper class to be common for all page objects
-            return driver.Title.Equals("Login");
-        }
-
-        public void LogOn(string user, string pass, string cid)
+        public string Password
         {
-            UserName.SendKeys(user);
-            passWord.SendKeys(pass);
-            cidNumber.SendKeys(cid);
-            captchaField.Click();
-            //10 seconds wait to enter captcha
-            Thread.Sleep(10000);
-            signIn.Click();            
+            get
+            {
+                return passWord.Text;
+            }
+            set
+            {
+                passWord.SendKeys(value);
+            }
         }
+
+        public string Cid
+        {
+            get
+            {
+                return cidNumber.Text;
+            }
+            set
+            {
+                cidNumber.SendKeys(value);
+            }
+        }
+
+        //Constructor
+        //What does this do?
+        public LoginPage(IWebDriver driver) : base(driver)
+        {
+
+        }
+
+        //if driver is not initialized it will throw an exception?
+        public static LoginPage NavigateTo(IWebDriver driver)
+        {
+            if(driver == null)
+            {
+                throw new ArgumentNullException(nameof(driver));
+            }
+
+            driver.Navigate().GoToUrl(PAGE_URL);
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(d => d.Title.StartsWith("Login"));//what does d => means?
+            return new LoginPage(driver);
+        }
+
+        public BackOfficePage Login()
+        {
+            signIn.Click();
+            return new BackOfficePage(_driver);
+        }
+      
     }
 }

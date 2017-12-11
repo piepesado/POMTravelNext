@@ -107,6 +107,7 @@
   <ItemGroup>
     <Compile Include="Helper.cs" />
     <Compile Include="PageObjects\BackOfficePage.cs" />
+    <Compile Include="PageObjects\BasePage.cs" />
     <Compile Include="PageObjects\CheckOutPage.cs" />
     <Compile Include="PageObjects\ConfirmationPage.cs" />
     <Compile Include="PageObjects\HotelPage.cs" />
@@ -117,14 +118,25 @@
     <Compile Include="PageObjects\ResultsPage.cs" />
     <Compile Include="PageObjects\MultipleLocationPage.cs" />
     <Compile Include="PageObjects\UserPage.cs" />
+    <Compile Include="SpecFlow\Login\Login.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Login.feature</DependentUpon>
+    </Compile>
+    <Compile Include="SpecFlow\Login\LoginSteps.cs" />
     <Compile Include="TestCases\BookFlightRound.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestCases\BookFlightMultiCity.cs" />
     <Compile Include="TestCases\BookFlightOneWay.cs" />
+    <Compile Include="WebDriverFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="SpecFlow\Login\Login.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Login.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\packages\Chromium.ChromeDriver.2.33\content\chromedriver.exe">
