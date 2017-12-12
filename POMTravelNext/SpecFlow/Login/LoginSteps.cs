@@ -21,40 +21,54 @@ namespace POMTravelNext.SpecFlow.Login
             _loginPage = LoginPage.NavigateTo(_driver);
         }
         
-        [Given(@"I enter dnan@travelleaders\.com as the username")]
-        public void GivenIEnterDnanTravelleaders_ComAsTheUsername()
+        [Given(@"I enter (.*) as the username")]
+        public void GivenIEnterTheUsername(string userName)
         {
-            ScenarioContext.Current.Pending();
+            _loginPage.Username = userName;
         }
         
         [Given(@"I enter the password")]
         public void GivenIEnterThePassword()
         {
-            ScenarioContext.Current.Pending();
+            _loginPage.Password = "P@ss123";
         }
         
         [Given(@"I enter (.*) as the CID")]
-        public void GivenIEnterAsTheCID(int p0)
+        public void GivenIEnterAsTheCID(string cid)
         {
-            ScenarioContext.Current.Pending();
+            _loginPage.Cid = cid;
         }
-        
-        [Given(@"I wait (.*) seconds to input captcha")]
-        public void GivenIWaitSecondsToInputCaptcha(int p0)
+
+        [Given(@"I click captcha field")]
+        public void GivenIClickCaptcha()
         {
-            ScenarioContext.Current.Pending();
+            return;//What assignment should I use?, Click action on captcha field is implemented at captcha setter
+        }
+
+        [Given(@"I wait (.*) seconds to input captcha")]
+        public void GivenIWaitSecondsToInputCaptcha(int seconds)
+        {
+            Thread.Sleep(seconds * 1000);//When is seconds declared?
         }
         
         [When(@"I press Login button")]
         public void WhenIPressLoginButton()
         {
-            ScenarioContext.Current.Pending();
+            _backOfficePage = _loginPage.Login();//I call backoffice class since this action results in going to that class?            
         }
         
         [Then(@"I should land on the Backoffice page")]
         public void ThenIShouldLandOnTheBackofficePage()
         {
-            ScenarioContext.Current.Pending();
+            _backOfficePage.EnsurePageIsLoaded();
+            Assert.AreEqual("home", _driver.Title);
+        }
+
+        [AfterScenario]
+        public void CleanUp()
+        {
+            _driver.Close();
+            _driver.Dispose();
         }
     }
 }

@@ -62,14 +62,25 @@ namespace POMTravelNext.PageObjects
             }
         }
 
+        public string Captcha
+        {
+            get
+            {
+                return captchaField.Text;
+            }
+            set
+            {
+                captchaField.Click();
+            }
+        }
+
         //Constructor
         //What does this do?
         public LoginPage(IWebDriver driver) : base(driver)
         {
 
         }
-
-        //if driver is not initialized it will throw an exception?
+        
         public static LoginPage NavigateTo(IWebDriver driver)
         {
             if(driver == null)
